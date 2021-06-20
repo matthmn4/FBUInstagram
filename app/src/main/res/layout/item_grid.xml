@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--XML implementation of Card Layout-->
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="125dp"
+    android:layout_height="125dp"
+    android:layout_gravity="center"
+    android:layout_margin="3dp"
+    app:cardElevation="0dp">
+
+    <ImageView
+        android:id="@+id/ivGridPicture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center|fill_horizontal|fill_vertical"
+        tools:srcCompat="@tools:sample/avatars" />
+
+
+</androidx.cardview.widget.CardView>

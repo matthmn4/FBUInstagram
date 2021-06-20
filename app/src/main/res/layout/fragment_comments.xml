@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center|center_vertical|center_horizontal"
+    android:background="@color/white"
+    tools:context=".fragments.CommentsFragment">
+
+
+
+    <RelativeLayout
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <include
+            android:id="@+id/comments_toolbar"
+            layout="@layout/comments_toolbar"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvComments"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_below="@+id/comments_toolbar"
+            android:layout_marginTop="0dp"
+            android:paddingStart="10dp" />
+
+        <EditText
+            android:id="@+id/etComments"
+            android:layout_width="295dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rvComments"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/button_login"
+            android:hint="Add a comment"
+            android:imeOptions="actionDone"
+            android:indeterminateTint="#8A8EC5"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="30dp"
+            android:scrollHorizontally="true" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rvComments"
+            android:layout_alignBottom="@+id/etComments"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/etComments"
+            android:background="@drawable/button_login"
+            android:paddingEnd="10dp"
+            android:text="Submit" />
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>

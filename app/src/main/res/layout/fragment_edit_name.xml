@@ -1,0 +1,38 @@
+<!-- fragment_edit_name.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/edit_name"
+    android:layout_width="400dp"
+    android:layout_height="100dp"
+    android:layout_gravity="center"
+    android:background="@color/white"
+    android:backgroundTint="#FFFFFF"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/lbl_your_name"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="Your new username" />
+
+    <EditText
+        android:id="@+id/txt_your_name"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_login"
+        android:gravity="center"
+        android:imeOptions="actionDone"
+        android:indeterminateTint="#8A8EC5"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/btnChange"
+        android:layout_width="380dp"
+        android:layout_height="30dp"
+        android:background="@drawable/button_login"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Submit" />
+</LinearLayout>
