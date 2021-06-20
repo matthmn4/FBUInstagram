@@ -13,9 +13,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fbuinstagram.R;
+import com.example.fbuinstagram.adapters.CommentsAdapter;
 import com.example.fbuinstagram.models.Comment;
 import com.example.fbuinstagram.models.Post;
 import com.parse.FindCallback;
@@ -26,6 +28,7 @@ import com.parse.SaveCallback;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommentsFragment extends DialogFragment {
@@ -36,8 +39,8 @@ public class CommentsFragment extends DialogFragment {
     Button btnSubmit;
     RecyclerView rvComments;
     Post post;
-    // CommentsAdapter adapter;
-
+    CommentsAdapter adapter;
+    List<Comment> allComments;
     public CommentsFragment() {
         // Required empty public constructor
     }
@@ -75,6 +78,13 @@ public class CommentsFragment extends DialogFragment {
         int position = getArguments().getInt("position");
         post = Parcels.unwrap(getArguments().getParcelable("post"));
 
+        allComments = new ArrayList<>();
+        adapter = new CommentsAdapter(getContext(), allComments);
+
+        rvComments.setAdapter(adapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        rvComments.setLayoutManager(linearLayoutManager);
+
         queryComments();
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -86,16 +96,17 @@ public class CommentsFragment extends DialogFragment {
                     return;
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
-                saveComments(desc, currentUser);
+                saveComments(desc, currentUser, post);
             }
         });
     }
 
-    private void saveComments(String desc, ParseUser currentUser) {
+    private void saveComments(String desc, ParseUser currentUser, Post post) {
         //pb.setVisibility(ProgressBar.VISIBLE);
         Comment comment = new Comment();
         comment.setDescription(desc);
         comment.setUser(currentUser);
+        comment.setPost(post);
         comment.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
@@ -128,6 +139,10 @@ public class CommentsFragment extends DialogFragment {
                 for (Comment comment : objects) {
                     Log.i(TAG, "Comment: " + comment.getDescription());
                 }
+                adapter.clear();
+                adapter.notifyDataSetChanged();
+                allComments.addAll(objects);
+                adapter.notifyDataSetChanged();
             }
         });
 
