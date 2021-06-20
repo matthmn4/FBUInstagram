@@ -90,6 +90,7 @@ public class ProfileFragment extends Fragment implements EditNameDialogFragment.
                 ParseUser.logOut();
                 Intent i = new Intent(getActivity(), LoginActivity.class);
                 startActivity(i);
+                getActivity().finish();
             }
         });
 

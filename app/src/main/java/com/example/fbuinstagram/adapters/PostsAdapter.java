@@ -131,6 +131,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder>{
                 }
             });
 
+            btnComment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickListener.onComment(getAdapterPosition(), post.getObjectId());
+                }
+            });
+
             ParseFile image = post.getImage();
             if (image != null) {
                 Glide.with(context)
@@ -184,6 +191,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder>{
                 }
 
             });
+
+
         }
 
 

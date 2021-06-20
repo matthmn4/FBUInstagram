@@ -59,6 +59,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
 
         public void bind(Comment comment) {
             tvCommentContent.setText(comment.getDescription());
+            //Log.d("hello", comment.getUser().toString());//.getUsername());
             tvCommentName.setText(comment.getUser().getUsername());
             ParseFile profile = comment.getUser().getParseFile("profile");
             Glide.with(context)

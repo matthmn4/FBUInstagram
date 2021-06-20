@@ -127,7 +127,7 @@ public class CommentsFragment extends DialogFragment {
         query.include(Comment.KEY_USER); //pointer
         query.include(Comment.KEY_POST); // pointer
         query.whereEqualTo(Comment.KEY_POST, post);
-        query.addDescendingOrder("createdAt");
+        //query.addDescendingOrder("createdAt");
         query.findInBackground(new FindCallback<Comment>() {
             @Override
             public void done(List<Comment> objects, ParseException e) {
