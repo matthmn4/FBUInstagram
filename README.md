@@ -38,7 +38,11 @@ The following **stretch** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
+## Latest updated walkthrough as of 07/03/2021
 <img src=walkthrough1.gif height=500/>
+
+## Pre sign-up implemented
+<img src=walkthrough2.gif height=500/>
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
