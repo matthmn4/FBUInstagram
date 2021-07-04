@@ -1,7 +1,5 @@
 package com.example.fbuinstagram;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -9,17 +7,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.parse.LogInCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 public class LoginActivity extends AppCompatActivity {
 
     public static final String TAG = "LoginActivity";
     private Button btnLogin;
     private EditText etUsername, etPassword;
+    private TextView tvSignup;
 
 
     AnimationDrawable animationDrawable;
@@ -48,7 +50,34 @@ public class LoginActivity extends AppCompatActivity {
                 loginUser(username, password);
             }
         });
+        
+        tvSignup = findViewById(R.id.tvSignup);
+        tvSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = etUsername.getText().toString();
+                String password = etPassword.getText().toString();
+                signupUser(username, password);
+            }
+        });
 
+    }
+
+    private void signupUser(String username, String password) {
+        ParseUser user = new ParseUser();
+        // Set core properties
+        user.setUsername(username);
+        user.setPassword(password);
+        // Invoke signUpInBackground
+        user.signUpInBackground(new SignUpCallback() {
+            public void done(ParseException e) {
+                if (e == null) {
+                    goMainActivity();
+                } else {
+                    Log.e(TAG, "Issue with signUp", e);
+                }
+            }
+        });
     }
 
     @Override
@@ -75,6 +104,8 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(i);
         finish();
     }
+    
+    
 
 
 }

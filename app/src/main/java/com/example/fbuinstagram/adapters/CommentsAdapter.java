@@ -62,10 +62,15 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
             //Log.d("hello", comment.getUser().toString());//.getUsername());
             tvCommentName.setText(comment.getUser().getUsername());
             ParseFile profile = comment.getUser().getParseFile("profile");
-            Glide.with(context)
-                    .load(profile.getUrl())
-                    .circleCrop()
-                    .into(ivCommentPFP);
+            if (profile != null) {
+                Glide.with(context)
+                        .load(profile.getUrl())
+                        .circleCrop()
+                        .into(ivCommentPFP);
+            } else {
+                ivCommentPFP.setImageResource(R.drawable.instagram_user_outline_24);
+            }
+
         }
     }
 

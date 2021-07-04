@@ -127,12 +127,16 @@ public class ProfileFragment extends Fragment implements EditNameDialogFragment.
                 allPosts.addAll(posts);
                 adapter.notifyDataSetChanged();
                 tvName.setText(ParseUser.getCurrentUser().getUsername());
-                ParseFile profile = posts.get(0).getUser().getParseFile("profile");
-                if (profile != null) {
-                    Glide.with(getContext())
-                            .load(profile.getUrl())
-                            .circleCrop()
-                            .into(ivPFP);
+                if (!posts.isEmpty()) {
+                    ParseFile profile = posts.get(0).getUser().getParseFile("profile");
+                    if (profile != null) {
+                        Glide.with(getContext())
+                                .load(profile.getUrl())
+                                .circleCrop()
+                                .into(ivPFP);
+                    }
+                } else {
+                    ivPFP.setImageResource(R.drawable.instagram_user_outline_24);
                 }
             }
         });
